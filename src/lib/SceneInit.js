@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
+import { GUI } from 'dat.gui';
+
 
 export default class SceneInit {
   constructor(canvasId) {
@@ -31,9 +33,9 @@ export default class SceneInit {
       this.fov,
       window.innerWidth / window.innerHeight,
       1,
-      1000
+      1500
     );
-    this.camera.position.z = 48;
+    this.camera.position.z = 960;
 
     // NOTE: Specify a canvas which is already created in the HTML.
     const canvas = document.getElementById(this.canvasId);
@@ -52,15 +54,26 @@ export default class SceneInit {
     document.body.appendChild(this.stats.dom);
 
     // ambient light which is for the whole scene
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    this.ambientLight.castShadow = true;
-    this.scene.add(this.ambientLight);
+    // this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    // this.ambientLight.castShadow = true;
+    // this.scene.add(this.ambientLight);
 
     // directional light - parallel sun rays
-    this.directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    // this.directionalLight.castShadow = true;
-    this.directionalLight.position.set(0, 32, 64);
+    this.directionalLight = new THREE.DirectionalLight(0xffffff, 5);
+    this.directionalLight.castShadow = true;
+    this.directionalLight.position.set(150, 150, 25);
+    this.directionalLight.target.position.set(0, 0, 0);
+    
+
+    // const gui = new GUI();
+    // const lightFolder = gui.addFolder('Light');
+    // lightFolder.add(this.directionalLight.position, 'x', -50, 50);
+    // lightFolder.add(this.directionalLight.position, 'y', -50, 50);
+    // lightFolder.add(this.directionalLight.position, 'z', -50, 50);
     this.scene.add(this.directionalLight);
+    this.scene.add(this.directionalLight.target);
+
+    
 
     // if window resizes
     window.addEventListener('resize', () => this.onWindowResize(), false);
