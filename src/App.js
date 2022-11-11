@@ -20,7 +20,7 @@ function App() {
     boxMesh.receiveShadow = true;
 
     const loader = new GLTFLoader();
-    loader.load( './images/chicken/source/Unity2Skfb/Unity2Skfb.gltf' , function ( gltf ) {
+    loader.load( 'chicken.gltf' , function ( gltf ) {
       world.scene.add( gltf.scene );
     }, undefined, function ( error ) {
       console.error( error );
