@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import * as THREE from 'three';
-import React, { useState, useEffect } from 'react';
-import { findAllInRenderedTree } from 'react-dom/test-utils';
+import React, {useEffect } from 'react';
 import SceneInit from './lib/SceneInit'; 
-import { GUI } from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 function App() {
